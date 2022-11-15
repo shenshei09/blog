@@ -1,0 +1,81 @@
+= Rocky Linux 9 防火墙的配置
+
+link:readme.adoc[返回目录]
+
+== 配置防火墙
+
+=== 启动防火墙服务
+
+`systemctl start firewalld`
+
+`systemctl enable firewalld`
+
+=== 关闭防火墙服务
+
+`systemctl stop firewalld`
+
+`systemctl disable firewalld`
+
+=== 开放特定端口
+
+开放80端口：
+
+`firewall-cmd --zone=public --add-port=80/tcp --permanent`
+
+开放3000-3500端口：
+
+`firewall-cmd --zone=public --add-port=3000-3500/tcp --permanent`
+
+允许http服务通过：
+
+`firewall-cmd --zone=public --add-service=http --permanent`
+
+=== 关闭特定端口
+
+关闭80端口：
+
+`firewall-cmd --zone=public --remove-port=80/tcp --permanent`
+
+关闭3000-3500端口：
+
+`firewall-cmd --zone=public --remove-port=3000-3500/tcp --permanent`
+
+不允许http服务通过：
+
+`firewall-cmd --zone=public --remove-service=http --permanent`
+
+=== 拒绝所有包
+
+`firewall-cmd --panic-on`
+
+=== 取消拒绝状态
+
+`firewall-cmd --panic-off`
+
+
+== 查看防火墙状态
+
+=== 查看防火墙的版本
+
+`firewall-cmd --version`
+
+=== 查看防火墙的状态
+
+`firewall-cmd --state`
+
+=== 查看防火墙全部的信息
+
+`firewall-cmd --list-all`
+
+=== 查看防火墙已开通的端口。
+`firewall-cmd --list-port`
+
+=== 查看防火墙已开通的服务。
+`firewall-cmd --list-service`
+
+=== 查看全部服务的列表
+`firewall-cmd --get-services`
+
+== 云服务器
+
+还需要登陆到厂商网站配置安全组。
